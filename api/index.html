@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keystroke Logs</title>
+</head>
+<body>
+    <h2>Keylogger Logs</h2>
+    <pre id="log"></pre>
+    
+    <script>
+        function fetchLogs() {
+            fetch("/view")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("log").innerText = data.logs.join("\n");
+            });
+        }
+        setInterval(fetchLogs, 2000);  // Refresh logs every 2 seconds
+        fetchLogs();
+    </script>
+</body>
+</html>
